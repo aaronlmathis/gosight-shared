@@ -28,9 +28,12 @@ import "time"
 type AgentStatus struct {
 	Hostname string            `json:"hostname"`
 	IP       string            `json:"ip"`
-	Labels   map[string]string `json:"labels,omitempty"`
-	OS       string            `json:"os,omitempty"`
-	LastSeen time.Time         `json:"-"`      // internal only
-	Status   string            `json:"status"` // Online / Idle / Offline
-	Since    string            `json:"since"`  // "3s ago" for display
+	OS       string            `json:"os"`
+	Arch     string            `json:"arch"`
+	Version  string            `json:"version"`
+	Labels   map[string]string `json:"labels"`
+	LastSeen time.Time         `json:"-"`
+	Status   string            `json:"status,omitempty"`
+	Since    string            `json:"since,omitempty"`
+	Updated  bool              `json:"-"`
 }
