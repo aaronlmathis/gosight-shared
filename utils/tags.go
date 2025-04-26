@@ -18,22 +18,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with GoSight. If not, see https://www.gnu.org/licenses/.
 */
-// Model for container
-// shared/model/container.go
-package model
 
-import "time"
+package utils
 
-type Container struct {
-	ContainerID string
-	Name        string
-	ImageName   string
-	ImageID     string
-	Runtime     string
-	Status      string
-	EndpointID  string
-	HostID      string
-	LastSeen    time.Time
-	Labels      map[string]string
-	Updated     bool
+// MatchAllTags returns true if all required tags exist in actualTags and match.
+func MatchAllTags(required map[string]string, actual map[string]string) bool {
+	for k, v := range required {
+		if actualVal, ok := actual[k]; !ok || actualVal != v {
+			return false
+		}
+	}
+	return true
 }
