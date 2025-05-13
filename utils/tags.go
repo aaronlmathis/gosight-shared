@@ -21,7 +21,7 @@ along with GoSight. If not, see https://www.gnu.org/licenses/.
 
 package utils
 
-import "github.com/aaronlmathis/gosight/shared/model"
+import "github.com/aaronlmathis/gosight-shared/model"
 
 // MatchAllTags returns true if all required tags exist in actualTags and match.
 func MatchAllTags(required map[string]string, actual map[string]string) bool {

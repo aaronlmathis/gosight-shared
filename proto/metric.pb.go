@@ -334,7 +334,7 @@ const file_metric_proto_rawDesc = "" +
 	"endpointId\x128\n" +
 	"\ttimestamp\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\x12'\n" +
 	"\ametrics\x18\x06 \x03(\v2\r.proto.MetricR\ametrics\x12\x1f\n" +
-	"\x04meta\x18\a \x01(\v2\v.proto.MetaR\x04metaB.Z,github.com/aaronlmathis/gosight/shared/protob\x06proto3"
+	"\x04meta\x18\a \x01(\v2\v.proto.MetaR\x04metaB.Z,github.com/aaronlmathis/gosight-shared/protob\x06proto3"
 
 var (
 	file_metric_proto_rawDescOnce sync.Once

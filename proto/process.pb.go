@@ -264,7 +264,7 @@ const file_process_proto_rawDesc = "" +
 	"endpointId\x128\n" +
 	"\ttimestamp\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\x120\n" +
 	"\tprocesses\x18\x06 \x03(\v2\x12.proto.ProcessInfoR\tprocesses\x12\x1f\n" +
-	"\x04meta\x18\a \x01(\v2\v.proto.MetaR\x04metaB.Z,github.com/aaronlmathis/gosight/shared/protob\x06proto3"
+	"\x04meta\x18\a \x01(\v2\v.proto.MetaR\x04metaB.Z,github.com/aaronlmathis/gosight-shared/protob\x06proto3"
 
 var (
 	file_process_proto_rawDescOnce sync.Once

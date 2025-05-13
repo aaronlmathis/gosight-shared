@@ -306,7 +306,7 @@ const file_stream_proto_rawDesc = "" +
 	"statusCode\x12/\n" +
 	"\acommand\x18\x03 \x01(\v2\x15.proto.CommandRequestR\acommand2J\n" +
 	"\rStreamService\x129\n" +
-	"\x06Stream\x12\x14.proto.StreamPayload\x1a\x15.proto.StreamResponse(\x010\x01B.Z,github.com/aaronlmathis/gosight/shared/protob\x06proto3"
+	"\x06Stream\x12\x14.proto.StreamPayload\x1a\x15.proto.StreamResponse(\x010\x01B.Z,github.com/aaronlmathis/gosight-shared/protob\x06proto3"
 
 var (
 	file_stream_proto_rawDescOnce sync.Once

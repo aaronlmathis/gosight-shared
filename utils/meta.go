@@ -3,7 +3,7 @@ package utils
 import (
 	"strings"
 
-	"github.com/aaronlmathis/gosight/shared/model"
+	"github.com/aaronlmathis/gosight-shared/model"
 )
 
 // ExtractStandardLabels builds a consistent map of labels from model.Meta.

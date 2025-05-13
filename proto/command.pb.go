@@ -164,7 +164,7 @@ const file_command_proto_rawDesc = "" +
 	"\x06output\x18\x02 \x01(\tR\x06output\x12#\n" +
 	"\rerror_message\x18\x03 \x01(\tR\ferrorMessage2Q\n" +
 	"\x0eCommandService\x12?\n" +
-	"\x0eExecuteCommand\x12\x15.proto.CommandRequest\x1a\x16.proto.CommandResponseB.Z,github.com/aaronlmathis/gosight/shared/protob\x06proto3"
+	"\x0eExecuteCommand\x12\x15.proto.CommandRequest\x1a\x16.proto.CommandResponseB.Z,github.com/aaronlmathis/gosight-shared/protob\x06proto3"
 
 var (
 	file_command_proto_rawDescOnce sync.Once

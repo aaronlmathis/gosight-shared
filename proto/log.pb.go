@@ -466,7 +466,7 @@ const file_log_proto_rawDesc = "" +
 	"\n" +
 	"LogService\x126\n" +
 	"\rSubmitMetrics\x12\x11.proto.LogPayload\x1a\x12.proto.LogResponse\x127\n" +
-	"\fSubmitStream\x12\x11.proto.LogPayload\x1a\x12.proto.LogResponse(\x01B.Z,github.com/aaronlmathis/gosight/shared/protob\x06proto3"
+	"\fSubmitStream\x12\x11.proto.LogPayload\x1a\x12.proto.LogResponse(\x01B.Z,github.com/aaronlmathis/gosight-shared/protob\x06proto3"
 
 var (
 	file_log_proto_rawDescOnce sync.Once
