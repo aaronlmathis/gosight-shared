@@ -51,6 +51,5 @@ type NetworkDeviceFilter struct {
 	RateLimit int
 	Limit  int    
 	Order  string 
-	Cursor time.Time
 	Offset int
 }
