@@ -52,4 +52,5 @@ type NetworkDeviceFilter struct {
 	Limit  int    
 	Order  string 
 	Offset int
+	Status string
 }
