@@ -38,3 +38,19 @@ type NetworkDevice struct {
 	CreatedAt time.Time `db:"created_at"` // record creation time
 	UpdatedAt time.Time `db:"updated_at"` // record update time
 }
+// NetworkDeviceFilter is used to filter network devices based on various criteria.
+type NetworkDeviceFilter struct {
+	Name      string
+	Vendor    string
+	Address   string
+	Port      int
+	Protocol  string
+	Format    string
+	Facility  string
+	SyslogID  string
+	RateLimit int
+	Limit  int    
+	Order  string 
+	Cursor time.Time
+	Offset int
+}
