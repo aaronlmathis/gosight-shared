@@ -37,6 +37,7 @@ type NetworkDevice struct {
 	RateLimit int       `db:"rate_limit"` // events/sec throttle (optional)
 	CreatedAt time.Time `db:"created_at"` // record creation time
 	UpdatedAt time.Time `db:"updated_at"` // record update time
+	Status    string    `db:"status"`     // "enabled", "disabled"
 }
 // NetworkDeviceFilter is used to filter network devices based on various criteria.
 type NetworkDeviceFilter struct {
