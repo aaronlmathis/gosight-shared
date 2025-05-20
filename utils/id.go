@@ -30,6 +30,7 @@ import (
 	"strings"
 
 	"github.com/aaronlmathis/gosight-shared/model"
+	"github.com/google/uuid"
 )
 
 func GenerateEndpointID(meta *model.Meta) string {
@@ -100,4 +101,9 @@ func trim(s string) string {
 
 func sanitize(s string) string {
 	return strings.ToLower(strings.ReplaceAll(s, " ", "-"))
+}
+
+// NewUUID returns a new UUID string.
+func NewUUID() string {
+	return uuid.NewString()
 }
