@@ -23,6 +23,7 @@ package model
 
 import "time"
 
+// LogEntry represents a single log entry with structured fields.
 type LogEntry struct {
 	Timestamp time.Time         `json:"timestamp"`      // When the log was emitted
 	Level     string            `json:"level"`          // info, warn, error, debug, etc.
@@ -35,6 +36,7 @@ type LogEntry struct {
 	Meta      *LogMeta          `json:"meta,omitempty"` // Optional platform/service-specific metadata
 }
 
+// LogMeta contains additional metadata about the log entry.
 type LogMeta struct {
 	Platform      string            `json:"platform,omitempty"`       // journald, eventlog, syslog, etc.
 	AppName       string            `json:"app_name,omitempty"`       // e.g., nginx, sshd
@@ -50,6 +52,7 @@ type LogMeta struct {
 	Extra         map[string]string `json:"extra,omitempty"`          // For collector-specific fields
 }
 
+// LogPayload represents a collection of log entries to be sent to the server.
 type LogPayload struct {
 	AgentID    string
 	HostID     string
@@ -60,6 +63,7 @@ type LogPayload struct {
 	Meta       *Meta
 }
 
+// StoredLog represents a log entry stored in the database.
 type StoredLog struct {
 	LogID string   `json:"log_id"`
 	Log   LogEntry `json:"log"`

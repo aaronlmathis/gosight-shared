@@ -38,7 +38,6 @@ type Point struct {
 
 // Metric represents a single metric data point.
 // It includes the namespace, subnamespace, name, timestamp, value, and other data.
-
 type Metric struct {
 	Namespace         string            `json:"namespace,omitempty"`
 	SubNamespace      string            `json:"subnamespace,omitempty"`
@@ -55,7 +54,6 @@ type Metric struct {
 // MetricPayload represents a collection of metrics to be sent to the server.
 // It includes the agent ID, host ID, hostname, endpoint ID, and a list of metrics.
 // The timestamp is the time at which the paylaod was packaged.
-
 type MetricPayload struct {
 	AgentID    string    `json:"agent_id"`
 	HostID     string    `json:"host_id"`
@@ -66,17 +64,20 @@ type MetricPayload struct {
 	Timestamp  time.Time `json:"timestamp"`
 }
 
+// MetricRow represents a single row of metric data.
 type MetricRow struct {
 	Value     float64           `json:"value"`
 	Tags      map[string]string `json:"tags"`
 	Timestamp int64             `json:"timestamp"` // Unix ms
 }
 
+// MetricPoint represents a single point in a metric time series.
 type MetricPoint struct {
 	Timestamp int64   `json:"timestamp"` // Unix ms
 	Value     float64 `json:"value"`     // Metric value
 }
 
+// MetricSelector is used to select a specific metric for querying.
 type MetricSelector struct {
 	Name         string
 	Namespace    string

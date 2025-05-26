@@ -26,8 +26,6 @@ package model
 
 import (
 	"time"
-
-	"github.com/google/uuid"
 )
 
 // EventEntry represents a single event entry in the event store.
@@ -40,7 +38,6 @@ import (
 // The endpoint ID is used to identify the endpoint associated with the event.
 // The meta field is a map of additional tags or labels that can be used to
 // provide more context about the event.
-
 type EventEntry struct {
 	ID         string            `json:"id"`
 	Timestamp  time.Time         `json:"timestamp"`
@@ -54,10 +51,6 @@ type EventEntry struct {
 	EndpointID string            `json:"endpoint_id"`
 	Meta       map[string]string `json:"meta"` // additional tags/labels
 
-}
-
-func GenerateID() string {
-	return uuid.NewString()
 }
 
 type EventFilter struct {

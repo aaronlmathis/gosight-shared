@@ -33,6 +33,7 @@ import (
 	"github.com/google/uuid"
 )
 
+// GenerateEndpointID creates a unique identifier for an endpoint based on its metadata.
 func GenerateEndpointID(meta *model.Meta) string {
 	if meta == nil {
 		return "unknown"
@@ -69,6 +70,7 @@ func GenerateEndpointID(meta *model.Meta) string {
 	return "unknown"
 }
 
+// GetNamespace returns the namespace for the endpoint based on its metadata.
 func GetNamespace(meta *model.Meta) string {
 	switch strings.ToLower(meta.CloudProvider) {
 	case "aws":
@@ -92,6 +94,7 @@ func GetNamespace(meta *model.Meta) string {
 	return "System"
 }
 
+// trim limits the string to 12 characters for consistent endpoint IDs.
 func trim(s string) string {
 	if len(s) > 12 {
 		return s[:12]
@@ -99,6 +102,7 @@ func trim(s string) string {
 	return s
 }
 
+// sanitize replaces spaces with hyphens and converts to lowercase.
 func sanitize(s string) string {
 	return strings.ToLower(strings.ReplaceAll(s, " ", "-"))
 }

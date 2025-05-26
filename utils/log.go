@@ -54,6 +54,7 @@ var (
 	debugWriter  io.Writer
 )
 
+// InitLogger initializes the logging system with specified log files and log level.
 func InitLogger(appLogFile, errorLogFile, accessLogFile, debugLogFile, logLevel string) error {
 	// Default: discard everything (safe fallback)
 	infoWriter = io.Discard

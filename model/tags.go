@@ -18,10 +18,10 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with GoSight. If not, see https://www.gnu.org/licenses/.
 */
-// Package model contains the data structures used in GoSight.
 
 package model
 
+// Tag represents a key-value pair associated with an endpoint.
 type Tag struct {
 	EndpointID string
 	Key        string
