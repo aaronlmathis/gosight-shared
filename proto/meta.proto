@@ -56,4 +56,6 @@ message Meta {
 
   string agent_version = 45;
   string agent_id = 46;
+  string resource_id = 47;
+  string kind = 48;
 }

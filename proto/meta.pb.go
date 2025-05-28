@@ -69,6 +69,8 @@ type Meta struct {
 	HostId               string                 `protobuf:"bytes,44,opt,name=host_id,json=hostId,proto3" json:"host_id,omitempty"`
 	AgentVersion         string                 `protobuf:"bytes,45,opt,name=agent_version,json=agentVersion,proto3" json:"agent_version,omitempty"`
 	AgentId              string                 `protobuf:"bytes,46,opt,name=agent_id,json=agentId,proto3" json:"agent_id,omitempty"`
+	ResourceId           string                 `protobuf:"bytes,47,opt,name=resource_id,json=resourceId,proto3" json:"resource_id,omitempty"`
+	Kind                 string                 `protobuf:"bytes,48,opt,name=kind,proto3" json:"kind,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -425,12 +427,26 @@ func (x *Meta) GetAgentId() string {
 	return ""
 }
 
+func (x *Meta) GetResourceId() string {
+	if x != nil {
+		return x.ResourceId
+	}
+	return ""
+}
+
+func (x *Meta) GetKind() string {
+	if x != nil {
+		return x.Kind
+	}
+	return ""
+}
+
 var File_meta_proto protoreflect.FileDescriptor
 
 const file_meta_proto_rawDesc = "" +
 	"\n" +
 	"\n" +
-	"meta.proto\x12\x05proto\"\xef\f\n" +
+	"meta.proto\x12\x05proto\"\xa4\r\n" +
 	"\x04Meta\x12\x1a\n" +
 	"\bhostname\x18\x01 \x01(\tR\bhostname\x12\x1d\n" +
 	"\n" +
@@ -487,10 +503,13 @@ const file_meta_proto_rawDesc = "" +
 	"\x13virtualization_role\x18+ \x01(\tR\x12virtualizationRole\x12\x17\n" +
 	"\ahost_id\x18, \x01(\tR\x06hostId\x12#\n" +
 	"\ragent_version\x18- \x01(\tR\fagentVersion\x12\x19\n" +
-	"\bagent_id\x18. \x01(\tR\aagentId\x1a7\n" +
+	"\bagent_id\x18. \x01(\tR\aagentId\x12\x1f\n" +
+	"\vresource_id\x18/ \x01(\tR\n" +
+	"resourceId\x12\x12\n" +
+	"\x04kind\x180 \x01(\tR\x04kind\x1a7\n" +
 	"\tTagsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01B.Z,github.com/aaronlmathis/gosight-shared/protob\x06proto3"
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01B.Z,github.com/aaronlmathis/gosight/shared/protob\x06proto3"
 
 var (
 	file_meta_proto_rawDescOnce sync.Once

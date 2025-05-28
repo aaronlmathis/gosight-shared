@@ -32,6 +32,7 @@ type Meta struct {
 	// General Host Information
 	HostID               string `json:"host_id"`     // Unique ID for the host
 	EndpointID           string `json:"endpoint_id"` // Unique ID for the endpoint
+	ResourceID		 	 string `json:"resource_id"` // Unique ID for the resource
 	Hostname             string `json:"hostname"`
 	IPAddress            string `json:"ip_address"`
 	OS                   string `json:"os,omitempty"`
