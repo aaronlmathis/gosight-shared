@@ -57,3 +57,9 @@ type SpanEvent struct {
 	Timestamp  time.Time         `json:"timestamp"`
 	Attributes map[string]string `json:"attributes,omitempty"`
 }
+
+// TracePayload represents a collection of trace spans sent from an agent
+type TracePayload struct {
+    Meta   *Meta       `json:"meta"`
+    Traces []TraceSpan `json:"traces"`
+}
