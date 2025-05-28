@@ -71,6 +71,17 @@ type ResourceFilter struct {
     LastSeenSince *time.Time      `json:"last_seen_since"`
 }
 
+type ResourceSearchQuery struct {
+    Query      string            `json:"query"`
+    Kinds      []string          `json:"kinds"`
+    Groups     []string          `json:"groups"`
+    Status     []string          `json:"status"`
+    Labels     map[string]string `json:"labels"`
+    Tags       map[string]string `json:"tags"`
+    Limit      int               `json:"limit"`
+    Offset     int               `json:"offset"`
+}
+
 const (
     ResourceKindHost      = "host"
     ResourceKindContainer = "container"
