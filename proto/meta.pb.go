@@ -71,6 +71,7 @@ type Meta struct {
 	AgentId              string                 `protobuf:"bytes,46,opt,name=agent_id,json=agentId,proto3" json:"agent_id,omitempty"`
 	ResourceId           string                 `protobuf:"bytes,47,opt,name=resource_id,json=resourceId,proto3" json:"resource_id,omitempty"`
 	Kind                 string                 `protobuf:"bytes,48,opt,name=kind,proto3" json:"kind,omitempty"`
+	Tags                 map[string]string      `protobuf:"bytes,49,rep,name=tags,proto3" json:"tags,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -441,12 +442,19 @@ func (x *Meta) GetKind() string {
 	return ""
 }
 
+func (x *Meta) GetTags() map[string]string {
+	if x != nil {
+		return x.Tags
+	}
+	return nil
+}
+
 var File_meta_proto protoreflect.FileDescriptor
 
 const file_meta_proto_rawDesc = "" +
 	"\n" +
 	"\n" +
-	"meta.proto\x12\x05proto\"\xac\r\n" +
+	"meta.proto\x12\x05proto\"\x90\x0e\n" +
 	"\x04Meta\x12\x1a\n" +
 	"\bhostname\x18\x01 \x01(\tR\bhostname\x12\x1d\n" +
 	"\n" +
@@ -506,8 +514,12 @@ const file_meta_proto_rawDesc = "" +
 	"\bagent_id\x18. \x01(\tR\aagentId\x12\x1f\n" +
 	"\vresource_id\x18/ \x01(\tR\n" +
 	"resourceId\x12\x12\n" +
-	"\x04kind\x180 \x01(\tR\x04kind\x1a9\n" +
+	"\x04kind\x180 \x01(\tR\x04kind\x12)\n" +
+	"\x04tags\x181 \x03(\v2\x15.proto.Meta.TagsEntryR\x04tags\x1a9\n" +
 	"\vLabelsEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\x1a7\n" +
+	"\tTagsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01B.Z,github.com/aaronlmathis/gosight/shared/protob\x06proto3"
 
@@ -523,18 +535,20 @@ func file_meta_proto_rawDescGZIP() []byte {
 	return file_meta_proto_rawDescData
 }
 
-var file_meta_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_meta_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_meta_proto_goTypes = []any{
 	(*Meta)(nil), // 0: proto.Meta
 	nil,          // 1: proto.Meta.LabelsEntry
+	nil,          // 2: proto.Meta.TagsEntry
 }
 var file_meta_proto_depIdxs = []int32{
 	1, // 0: proto.Meta.labels:type_name -> proto.Meta.LabelsEntry
-	1, // [1:1] is the sub-list for method output_type
-	1, // [1:1] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	2, // 1: proto.Meta.tags:type_name -> proto.Meta.TagsEntry
+	2, // [2:2] is the sub-list for method output_type
+	2, // [2:2] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_meta_proto_init() }
@@ -548,7 +562,7 @@ func file_meta_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_meta_proto_rawDesc), len(file_meta_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

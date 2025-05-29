@@ -32,8 +32,8 @@ type Meta struct {
 	// General Host Information
 	HostID               string `json:"host_id"`     // Unique ID for the host
 	EndpointID           string `json:"endpoint_id"` // Unique ID for the endpoint
-	ResourceID		 	 string `json:"resource_id"` // Unique ID for the resource
-	Kind				 string `json:"kind"`         // Type of resource (e.g., host, container, service)
+	ResourceID           string `json:"resource_id"` // Unique ID for the resource
+	Kind                 string `json:"kind"`        // Type of resource (e.g., host, container, service)
 	Hostname             string `json:"hostname"`
 	IPAddress            string `json:"ip_address"`
 	OS                   string `json:"os,omitempty"`
@@ -86,4 +86,5 @@ type Meta struct {
 
 	// Custom Metadata
 	Labels map[string]string `json:"labels,omitempty"` // System-generated labels (not user tags)
+	Tags   map[string]string `json:"tags,omitempty"`   // User-defined tags for custom categorization
 }
