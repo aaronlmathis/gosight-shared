@@ -58,7 +58,7 @@ type Meta struct {
 	PrivateIp            string                 `protobuf:"bytes,33,opt,name=private_ip,json=privateIp,proto3" json:"private_ip,omitempty"`
 	MacAddress           string                 `protobuf:"bytes,34,opt,name=mac_address,json=macAddress,proto3" json:"mac_address,omitempty"`
 	NetworkInterface     string                 `protobuf:"bytes,35,opt,name=network_interface,json=networkInterface,proto3" json:"network_interface,omitempty"`
-	Tags                 map[string]string      `protobuf:"bytes,36,rep,name=tags,proto3" json:"tags,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	Labels               map[string]string      `protobuf:"bytes,36,rep,name=labels,proto3" json:"labels,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	EndpointId           string                 `protobuf:"bytes,37,opt,name=endpoint_id,json=endpointId,proto3" json:"endpoint_id,omitempty"`
 	Platform             string                 `protobuf:"bytes,38,opt,name=platform,proto3" json:"platform,omitempty"`
 	PlatformFamily       string                 `protobuf:"bytes,39,opt,name=platform_family,json=platformFamily,proto3" json:"platform_family,omitempty"`
@@ -350,9 +350,9 @@ func (x *Meta) GetNetworkInterface() string {
 	return ""
 }
 
-func (x *Meta) GetTags() map[string]string {
+func (x *Meta) GetLabels() map[string]string {
 	if x != nil {
-		return x.Tags
+		return x.Labels
 	}
 	return nil
 }
@@ -446,7 +446,7 @@ var File_meta_proto protoreflect.FileDescriptor
 const file_meta_proto_rawDesc = "" +
 	"\n" +
 	"\n" +
-	"meta.proto\x12\x05proto\"\xa4\r\n" +
+	"meta.proto\x12\x05proto\"\xac\r\n" +
 	"\x04Meta\x12\x1a\n" +
 	"\bhostname\x18\x01 \x01(\tR\bhostname\x12\x1d\n" +
 	"\n" +
@@ -491,8 +491,8 @@ const file_meta_proto_rawDesc = "" +
 	"private_ip\x18! \x01(\tR\tprivateIp\x12\x1f\n" +
 	"\vmac_address\x18\" \x01(\tR\n" +
 	"macAddress\x12+\n" +
-	"\x11network_interface\x18# \x01(\tR\x10networkInterface\x12)\n" +
-	"\x04tags\x18$ \x03(\v2\x15.proto.Meta.TagsEntryR\x04tags\x12\x1f\n" +
+	"\x11network_interface\x18# \x01(\tR\x10networkInterface\x12/\n" +
+	"\x06labels\x18$ \x03(\v2\x17.proto.Meta.LabelsEntryR\x06labels\x12\x1f\n" +
 	"\vendpoint_id\x18% \x01(\tR\n" +
 	"endpointId\x12\x1a\n" +
 	"\bplatform\x18& \x01(\tR\bplatform\x12'\n" +
@@ -506,8 +506,8 @@ const file_meta_proto_rawDesc = "" +
 	"\bagent_id\x18. \x01(\tR\aagentId\x12\x1f\n" +
 	"\vresource_id\x18/ \x01(\tR\n" +
 	"resourceId\x12\x12\n" +
-	"\x04kind\x180 \x01(\tR\x04kind\x1a7\n" +
-	"\tTagsEntry\x12\x10\n" +
+	"\x04kind\x180 \x01(\tR\x04kind\x1a9\n" +
+	"\vLabelsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01B.Z,github.com/aaronlmathis/gosight/shared/protob\x06proto3"
 
@@ -526,10 +526,10 @@ func file_meta_proto_rawDescGZIP() []byte {
 var file_meta_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_meta_proto_goTypes = []any{
 	(*Meta)(nil), // 0: proto.Meta
-	nil,          // 1: proto.Meta.TagsEntry
+	nil,          // 1: proto.Meta.LabelsEntry
 }
 var file_meta_proto_depIdxs = []int32{
-	1, // 0: proto.Meta.tags:type_name -> proto.Meta.TagsEntry
+	1, // 0: proto.Meta.labels:type_name -> proto.Meta.LabelsEntry
 	1, // [1:1] is the sub-list for method output_type
 	1, // [1:1] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name

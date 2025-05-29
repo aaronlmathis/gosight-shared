@@ -43,7 +43,7 @@ message Meta {
   string mac_address = 34;
   string network_interface = 35;
 
-  map<string, string> tags = 36;
+  map<string, string> labels = 36;
 
   string endpoint_id = 37;
   string platform = 38;
