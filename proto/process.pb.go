@@ -33,7 +33,7 @@ type ProcessInfo struct {
 	MemPercent    float64                `protobuf:"fixed64,7,opt,name=mem_percent,json=memPercent,proto3" json:"mem_percent,omitempty"`
 	Threads       int32                  `protobuf:"varint,8,opt,name=threads,proto3" json:"threads,omitempty"`
 	StartTime     *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=start_time,json=startTime,proto3" json:"start_time,omitempty"`
-	Tags          map[string]string      `protobuf:"bytes,10,rep,name=tags,proto3" json:"tags,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	Labels        map[string]string      `protobuf:"bytes,10,rep,name=labels,proto3" json:"labels,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -131,9 +131,9 @@ func (x *ProcessInfo) GetStartTime() *timestamppb.Timestamp {
 	return nil
 }
 
-func (x *ProcessInfo) GetTags() map[string]string {
+func (x *ProcessInfo) GetLabels() map[string]string {
 	if x != nil {
-		return x.Tags
+		return x.Labels
 	}
 	return nil
 }
@@ -235,7 +235,7 @@ var File_process_proto protoreflect.FileDescriptor
 const file_process_proto_rawDesc = "" +
 	"\n" +
 	"\rprocess.proto\x12\x05proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\n" +
-	"meta.proto\"\x83\x03\n" +
+	"meta.proto\"\x8b\x03\n" +
 	"\vProcessInfo\x12\x10\n" +
 	"\x03pid\x18\x01 \x01(\x05R\x03pid\x12\x12\n" +
 	"\x04ppid\x18\x02 \x01(\x05R\x04ppid\x12\x12\n" +
@@ -250,10 +250,10 @@ const file_process_proto_rawDesc = "" +
 	"memPercent\x12\x18\n" +
 	"\athreads\x18\b \x01(\x05R\athreads\x129\n" +
 	"\n" +
-	"start_time\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\tstartTime\x120\n" +
-	"\x04tags\x18\n" +
-	" \x03(\v2\x1c.proto.ProcessInfo.TagsEntryR\x04tags\x1a7\n" +
-	"\tTagsEntry\x12\x10\n" +
+	"start_time\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\tstartTime\x126\n" +
+	"\x06labels\x18\n" +
+	" \x03(\v2\x1e.proto.ProcessInfo.LabelsEntryR\x06labels\x1a9\n" +
+	"\vLabelsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\x8e\x02\n" +
 	"\x0eProcessPayload\x12\x19\n" +
@@ -264,7 +264,7 @@ const file_process_proto_rawDesc = "" +
 	"endpointId\x128\n" +
 	"\ttimestamp\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\x120\n" +
 	"\tprocesses\x18\x06 \x03(\v2\x12.proto.ProcessInfoR\tprocesses\x12\x1f\n" +
-	"\x04meta\x18\a \x01(\v2\v.proto.MetaR\x04metaB.Z,github.com/aaronlmathis/gosight-shared/protob\x06proto3"
+	"\x04meta\x18\a \x01(\v2\v.proto.MetaR\x04metaB.Z,github.com/aaronlmathis/gosight/shared/protob\x06proto3"
 
 var (
 	file_process_proto_rawDescOnce sync.Once
@@ -282,13 +282,13 @@ var file_process_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_process_proto_goTypes = []any{
 	(*ProcessInfo)(nil),           // 0: proto.ProcessInfo
 	(*ProcessPayload)(nil),        // 1: proto.ProcessPayload
-	nil,                           // 2: proto.ProcessInfo.TagsEntry
+	nil,                           // 2: proto.ProcessInfo.LabelsEntry
 	(*timestamppb.Timestamp)(nil), // 3: google.protobuf.Timestamp
 	(*Meta)(nil),                  // 4: proto.Meta
 }
 var file_process_proto_depIdxs = []int32{
 	3, // 0: proto.ProcessInfo.start_time:type_name -> google.protobuf.Timestamp
-	2, // 1: proto.ProcessInfo.tags:type_name -> proto.ProcessInfo.TagsEntry
+	2, // 1: proto.ProcessInfo.labels:type_name -> proto.ProcessInfo.LabelsEntry
 	3, // 2: proto.ProcessPayload.timestamp:type_name -> google.protobuf.Timestamp
 	0, // 3: proto.ProcessPayload.processes:type_name -> proto.ProcessInfo
 	4, // 4: proto.ProcessPayload.meta:type_name -> proto.Meta

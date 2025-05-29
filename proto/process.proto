@@ -16,7 +16,7 @@ message ProcessInfo {
   double mem_percent = 7;
   int32 threads = 8;
   google.protobuf.Timestamp start_time = 9;
-  map<string, string> tags = 10;
+  map<string, string> labels = 10;
 }
 
 message ProcessPayload {

@@ -85,5 +85,5 @@ type Meta struct {
 	NetworkInterface string `json:"network_interface,omitempty"`
 
 	// Custom Metadata
-	Tags map[string]string `json:"tags,omitempty"` // Allow for arbitrary key-value pairs
+	Labels map[string]string `json:"labels,omitempty"` // System-generated labels (not user tags)
 }

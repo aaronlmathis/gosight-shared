@@ -32,7 +32,7 @@ type LogEntry struct {
 	Category  string            `json:"category"`       // Optional: auth, network, system, app, etc.
 	PID       int               `json:"pid,omitempty"`  // Process ID if available
 	Fields    map[string]string `json:"fields"`         // Structured fields (JSON logs, key/values)
-	Tags      map[string]string `json:"tags"`           // Custom labels/tags (user-defined or enriched)
+	Labels    map[string]string `json:"labels"`         // Custom labels/tags (user-defined or enriched)
 	Meta      *LogMeta          `json:"meta,omitempty"` // Optional platform/service-specific metadata
 }
 
@@ -95,7 +95,7 @@ type LogFilter struct {
 	Platform      string
 	ContainerName string // Windows event ID, etc.
 	Meta          map[string]string
-	Tags          map[string]string // Additional tags to filter by
+	Labels        map[string]string // Additional labels to filter by
 	Extra         map[string]string
 	Fields        map[string]string // Additional fields to filter by
 	// Limit and sorting

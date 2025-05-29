@@ -36,14 +36,14 @@ func ExtractStandardLabels(meta *model.Meta) map[string]string {
 		labels["instance"] = meta.Hostname
 	}
 
-	if ns, ok := meta.Tags["namespace"]; ok {
+	if ns, ok := meta.Labels["namespace"]; ok {
 		labels["namespace"] = strings.ToLower(ns)
 	}
-	if sub, ok := meta.Tags["subnamespace"]; ok {
+	if sub, ok := meta.Labels["subnamespace"]; ok {
 		labels["subnamespace"] = strings.ToLower(sub)
 	}
 
-	for k, v := range meta.Tags {
+	for k, v := range meta.Labels {
 		if _, exists := labels[k]; !exists {
 			labels[k] = v
 		}

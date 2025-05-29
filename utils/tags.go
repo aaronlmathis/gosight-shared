@@ -23,8 +23,8 @@ package utils
 
 import "github.com/aaronlmathis/gosight-shared/model"
 
-// MatchAllTags returns true if all required tags exist in actualTags and match.
-func MatchAllTags(required map[string]string, actual map[string]string) bool {
+// MatchAllLabels returns true if all required Labels exist in actualLabels and match.
+func MatchAllLabels(required map[string]string, actual map[string]string) bool {
 	for k, v := range required {
 		if actualVal, ok := actual[k]; !ok || actualVal != v {
 			return false
@@ -33,14 +33,14 @@ func MatchAllTags(required map[string]string, actual map[string]string) bool {
 	return true
 }
 
-// SafeCopyTags ensures that meta.Tags is never nil.
-// It returns a non-nil map[string]string for tags, even if it was nil originally.
-func SafeCopyTags(meta *model.Meta) map[string]string {
+// SafeCopyLabels ensures that meta.Labels is never nil.
+// It returns a non-nil map[string]string for Labels, even if it was nil originally.
+func SafeCopyLabels(meta *model.Meta) map[string]string {
 	if meta == nil {
 		return make(map[string]string)
 	}
-	if meta.Tags == nil {
-		meta.Tags = make(map[string]string)
+	if meta.Labels == nil {
+		meta.Labels = make(map[string]string)
 	}
-	return meta.Tags
+	return meta.Labels
 }

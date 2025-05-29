@@ -67,7 +67,7 @@ type MetricPayload struct {
 // MetricRow represents a single row of metric data.
 type MetricRow struct {
 	Value     float64           `json:"value"`
-	Tags      map[string]string `json:"tags"`
+	Labels    map[string]string `json:"tags"`
 	Timestamp int64             `json:"timestamp"` // Unix ms
 }
 

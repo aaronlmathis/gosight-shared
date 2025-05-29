@@ -34,7 +34,7 @@ type ProcessInfo struct {
 	MemPercent float64           `json:"mem_percent"`
 	Threads    int               `json:"threads"`
 	StartTime  time.Time         `json:"start_time"`
-	Tags       map[string]string `json:"tags,omitempty"` // container_id, container_name, etc
+	Labels     map[string]string `json:"labels,omitempty"` // container_id, container_name, etc
 }
 
 // ProcessSnapshot represents a snapshot of processes running on a host at a specific time.
@@ -69,7 +69,7 @@ type ProcessQueryFilter struct {
 	PPID            int
 	ExeContains     string
 	CmdlineContains string
-	Tags            map[string]string
+	Labels          map[string]string
 	SortBy          string
 	SortDesc        bool
 	Limit           int
