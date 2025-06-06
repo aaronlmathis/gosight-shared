@@ -23,6 +23,75 @@ package model
 
 import "time"
 
+// Exemplar holds a single exemplar from a metric DataPoint,
+// including trace/span IDs for correlation.
+type Exemplar struct {
+    Value              float64           `json:"value"`                // exemplar value
+    Timestamp          time.Time         `json:"timestamp"`            // when exemplar was recorded
+    TraceID            string            `json:"trace_id,omitempty"`   // 16-byte hex
+    SpanID             string            `json:"span_id,omitempty"`    // 8-byte hex
+    FilteredAttributes map[string]string `json:"filtered_attributes,omitempty"`
+}
+
+// DataPoint represents one data point of a metric. Depending on DataType,
+// only one of Value, Histogram, or Summary will be non-nil.
+type DataPoint struct {
+    // --- Common fields ---
+    Attributes     map[string]string `json:"attributes,omitempty"`     // OTLP attribute map
+    StartTimestamp time.Time         `json:"start_timestamp,omitempty"`// for cumulative metrics (Sum/Counter/Histogram)
+    Timestamp      time.Time         `json:"timestamp"`                // point timestamp
+
+    // --- Depending on metric type: one of these is non-zero/non-nil ---
+    // Gauge or Sum (counter)
+    Value float64 `json:"value,omitempty"`
+
+    // Histogram
+    Count        uint64    `json:"count,omitempty"`
+    Sum          float64   `json:"sum,omitempty"`
+    BucketCounts []uint64  `json:"bucket_counts,omitempty"`
+    ExplicitBounds []float64 `json:"explicit_bounds,omitempty"`
+
+    // Summary (percentiles)
+    QuantileValues []QuantileValue `json:"quantile_values,omitempty"`
+
+    // Exemplars (trace/span IDs for sampled measurements)
+    Exemplars []Exemplar `json:"exemplars,omitempty"`
+}
+
+// QuantileValue is used when DataType == Summary.
+type QuantileValue struct {
+    Quantile float64 `json:"quantile"` // e.g., 0.5 for p50
+    Value    float64 `json:"value"`
+}
+
+// Metric records one OTLP Metric, including its type, unit, and data points.
+type Metric struct {
+    // Basic identity fields
+    Namespace    string            `json:"namespace,omitempty"`     // optional “namespace” (e.g., user‐defined grouping)
+    SubNamespace string            `json:"subnamespace,omitempty"`  // optional
+    Name         string            `json:"name"`                    // metric name (OTLP: metric.name)
+    Description  string            `json:"description,omitempty"`   // OTLP: metric description
+    Unit         string            `json:"unit,omitempty"`          // OTLP: metric unit (e.g., "ms", "MiB")
+	
+	Source string `json:"source,omitempty"`  // gopsutils, prometheus, etc.
+	
+    // DataType indicates how to interpret the DataPoints slice.
+    // Common values: "gauge", "sum", "histogram", "summary", etc.
+    DataType string `json:"type,omitempty"`
+
+    // For "sum" (cumulative/counter) metrics, indicates aggregation temporality:
+    //   "cumulative" or "delta"
+    AggregationTemporality string `json:"aggregation_temporality,omitempty"`
+
+    // Each metric may carry zero or more DataPoints (usually at least one).
+    DataPoints []DataPoint `json:"data_points,omitempty"`
+
+    // StorageResolution is your existing retention/rollup hint.
+    StorageResolution int `json:"resolution,omitempty"`
+}
+
+
+
 // StatisticValues represents the minimum, maximum, count, and sum of a metric.
 type StatisticValues struct {
 	Minimum     float64 `json:"min"`
@@ -38,18 +107,18 @@ type Point struct {
 
 // Metric represents a single metric data point.
 // It includes the namespace, subnamespace, name, timestamp, value, and other data.
-type Metric struct {
-	Namespace         string            `json:"namespace,omitempty"`
-	SubNamespace      string            `json:"subnamespace,omitempty"`
-	Name              string            `json:"name"`
-	Timestamp         time.Time         `json:"timestamp"`
-	Value             float64           `json:"value"`
-	StatisticValues   *StatisticValues  `json:"stats"`
-	Unit              string            `json:"unit,omitempty"`
-	Dimensions        map[string]string `json:"dimensions,omitempty"`
-	StorageResolution int               `json:"resolution,omitempty"`
-	Type              string            `json:"type,omitempty"`
-}
+// type Metric struct {
+// 	Namespace         string            `json:"namespace,omitempty"`
+// 	SubNamespace      string            `json:"subnamespace,omitempty"`
+// 	Name              string            `json:"name"`
+// 	Timestamp         time.Time         `json:"timestamp"`
+// 	Value             float64           `json:"value"`
+// 	StatisticValues   *StatisticValues  `json:"stats"`
+// 	Unit              string            `json:"unit,omitempty"`
+// 	Dimensions        map[string]string `json:"dimensions,omitempty"`
+// 	StorageResolution int               `json:"resolution,omitempty"`
+// 	Type              string            `json:"type,omitempty"`
+// }
 
 // MetricPayload represents a collection of metrics to be sent to the server.
 // It includes the agent ID, host ID, hostname, endpoint ID, and a list of metrics.

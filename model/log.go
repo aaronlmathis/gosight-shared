@@ -24,16 +24,57 @@ package model
 import "time"
 
 // LogEntry represents a single log entry with structured fields.
+// type LogEntry struct {
+// 	Timestamp time.Time         `json:"timestamp"`      // When the log was emitted
+// 	Level     string            `json:"level"`          // info, warn, error, debug, etc.
+// 	Message   string            `json:"message"`        // The actual log content
+// 	Source    string            `json:"source"`         // Collector name or service name (e.g., journald, nginx)
+// 	Category  string            `json:"category"`       // Optional: auth, network, system, app, etc.
+// 	PID       int               `json:"pid,omitempty"`  // Process ID if available
+// 	Fields    map[string]string `json:"fields"`         // Structured fields (JSON logs, key/values)
+// 	Labels    map[string]string `json:"labels"`         // Custom labels/tags (user-defined or enriched)
+// 	Meta      *Meta          `json:"meta,omitempty"` // Optional platform/service-specific metadata
+// }
+
+// ------------------------------------
+// LogEntry (no more LogMeta; just reference *Meta)
+// ------------------------------------
 type LogEntry struct {
-	Timestamp time.Time         `json:"timestamp"`      // When the log was emitted
-	Level     string            `json:"level"`          // info, warn, error, debug, etc.
-	Message   string            `json:"message"`        // The actual log content
-	Source    string            `json:"source"`         // Collector name or service name (e.g., journald, nginx)
-	Category  string            `json:"category"`       // Optional: auth, network, system, app, etc.
-	PID       int               `json:"pid,omitempty"`  // Process ID if available
-	Fields    map[string]string `json:"fields"`         // Structured fields (JSON logs, key/values)
-	Labels    map[string]string `json:"labels"`         // Custom labels/tags (user-defined or enriched)
-	Meta      *LogMeta          `json:"meta,omitempty"` // Optional platform/service-specific metadata
+    // --- OTLP Timestamps (log record fields) ---
+    Timestamp         time.Time `json:"timestamp"`                  // event time
+    ObservedTimestamp time.Time `json:"observed_timestamp,omitempty"` // when collector saw it
+
+    // --- OTLP Severity / Name / Body ----
+    SeverityText   string `json:"severity_text,omitempty"`   // e.g. "ERROR", "INFO"
+    SeverityNumber int32  `json:"severity_number,omitempty"` // numeric enum
+    Name           string `json:"name,omitempty"`            // optional log name/event name
+
+    Body string `json:"body,omitempty"` // the actual log payload
+
+    // --- Trace correlation (to link logs ↔ traces) ----
+    TraceID string `json:"trace_id,omitempty"` // 16-byte hex
+    SpanID  string `json:"span_id,omitempty"`  // 8-byte hex
+    Flags   uint32 `json:"flags,omitempty"`    // trace_flags
+
+    //     since severity+attributes/body often suffice.) ---
+    Level    string            `json:"level,omitempty"`    // optional high-level level
+    Message  string            `json:"message,omitempty"`  // optional duplicate of Body
+    Source   string            `json:"source,omitempty"`   // e.g. "journald", "nginx"
+    Category string            `json:"category,omitempty"` // e.g. "auth", "system", "app"
+
+    PID int `json:"pid,omitempty"` // process ID, if you extract from attributes
+
+    // Structured “fields” (e.g. JSON‐style sub‐fields)
+    Fields map[string]string `json:"fields,omitempty"`
+
+    // Custom labels/tags (user-defined or enriched)
+    Labels map[string]string `json:"labels,omitempty"`
+
+    // Any extra OTLP attributes you haven’t mapped above
+    Attributes map[string]interface{} `json:"attributes,omitempty"`
+
+    // Now just reference the unified Meta
+    Meta *Meta `json:"meta,omitempty"`
 }
 
 // LogMeta contains additional metadata about the log entry.
