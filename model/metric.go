@@ -88,6 +88,8 @@ type Metric struct {
 
     // StorageResolution is your existing retention/rollup hint.
     StorageResolution int `json:"resolution,omitempty"`
+
+    Meta *Meta `json:"meta,omitempty"` // optional metadata about the metric
 }
 
 

@@ -49,6 +49,7 @@ type TraceSpan struct {
 
 	Events        []SpanEvent       `json:"events,omitempty"`
 	ResourceAttrs map[string]string `json:"resource_attrs,omitempty"` // service.name, host.name, etc.
+	Meta		  *Meta             `json:"meta,omitempty"` // Additional metadata for the span
 }
 
 // SpanEvent represents an event that occurred during the execution of a span.
